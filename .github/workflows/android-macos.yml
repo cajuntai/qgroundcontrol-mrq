@@ -17,7 +17,7 @@ on: workflow_dispatch
   #     - 'android/**'
   #     - 'CMakeLists.txt'
   #     - 'cmake/**'
-      - 'translations/*'
+  #     - 'translations/*'
 
 # concurrency:
 #   group: ${{ github.workflow }}-${{ github.ref }}
