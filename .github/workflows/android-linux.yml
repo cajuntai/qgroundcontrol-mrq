@@ -84,17 +84,22 @@ jobs:
 
       - run: cp ${{ runner.temp }}/build/android-build/*.apk ${{ runner.temp }}/build/${{ env.PACKAGE }}.apk
 
-      - name: Upload Build File
-        if: matrix.build_type == 'Release'
-        uses: ./.github/actions/upload
+      - name: Archive built APK
+        uses: actions/upload-artifact@v4
         with:
-          artifact_name: ${{ env.PACKAGE }}.apk
-          package_name: ${{ env.PACKAGE }}
-          aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_distribution_id: ${{ secrets.AWS_DISTRIBUTION_ID }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          upload_aws: true
+          name: built-apk-artifact
+          path: output/apk/qgroundcontrol-mrq.html
+      # - name: Upload Build File
+      #   if: matrix.build_type == 'Release'
+      #   uses: ./.github/actions/upload
+      #   with:
+      #     artifact_name: ${{ env.PACKAGE }}.apk
+      #     package_name: ${{ env.PACKAGE }}
+      #     aws_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     aws_distribution_id: ${{ secrets.AWS_DISTRIBUTION_ID }}
+      #     github_token: ${{ secrets.GITHUB_TOKEN }}
+      #     upload_aws: true
 
       # - name: Deploy to Play Store
       #   if: matrix.build_type == 'Release'
